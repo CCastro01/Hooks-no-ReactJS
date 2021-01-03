@@ -1,29 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
+import Teste from './components/Teste'
 
 function App() {
   const [count, setCount] = useState(0);
 
-  useEffect(()=> {
-    console.log('did mount')
-  },[])
-
-  useEffect(()=> {
-    console.log('did update:', count)
-  },[count])
+  const testComponent = useMemo(() => <Teste/>, []);
 
   return (
     <div className="App">
+
+      {testComponent}
       <h1>{count}</h1>
 
-      {/* <button
-        onClick={() =>
-          setCount((oldState) => {
-            return oldState + 1;
-          })
-        }
-      >
-        Increment
-      </button> */}
 
       <button
         onClick={() =>

@@ -13,5 +13,17 @@ export default function useScreen() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  return { width: windowWidth };
+  function maxWidth(width: number, component: React.ReactNode){
+      if(width >= windowWidth){
+          return component;
+      }
+  } 
+
+  function minWidth(width: number, component: React.ReactNode){
+    if(width <= windowWidth){
+        return component;
+    }
+}
+
+  return { width: windowWidth, maxWidth, minWidth };
 }

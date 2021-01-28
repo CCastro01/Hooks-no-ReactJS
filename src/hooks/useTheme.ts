@@ -1,23 +1,9 @@
-import { useEffect, useState } from "react";
-
-type Theme = 'dark' | 'light';
-
-export default function useTheme(defaultTheme?: Theme){
-    const [theme, setTheme] = useState(() => {
-        return localStorage.getItem('@hooks:theme') || (defaultTheme || 'dark');
-    });
-
-    function toggleTheme(){
-        setTheme(oldState => {
-            return oldState === 'light' ? 'dark' : 'light';
-        });
-    }
+import { useContext } from "react";
+import { ThemeContext, ThemeContextType } from "../contexts/theme";
 
 
-    useEffect(() => {
-        localStorage.setItem('@hooks:theme', theme);
-    }, [theme])
+export default function useTheme(): ThemeContextType{
+    const context = useContext(ThemeContext);
 
-
-    return {theme, toggleTheme};
+    return context;
 }
